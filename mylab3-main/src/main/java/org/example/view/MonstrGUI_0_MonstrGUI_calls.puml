@@ -1,0 +1,270 @@
+@startuml
+
+/' diagram meta data start
+config=CallConfiguration;
+{
+  "rootMethod": "org.example.view.MonstrGUI#MonstrGUI()",
+  "projectClassification": {
+    "searchMode": "OpenProject", // OpenProject, AllProjects
+    "includedProjects": "",
+    "pathEndKeywords": "*.impl",
+    "isClientPath": "",
+    "isClientName": "",
+    "isTestPath": "",
+    "isTestName": "",
+    "isMappingPath": "",
+    "isMappingName": "",
+    "isDataAccessPath": "",
+    "isDataAccessName": "",
+    "isDataStructurePath": "",
+    "isDataStructureName": "",
+    "isInterfaceStructuresPath": "",
+    "isInterfaceStructuresName": "",
+    "isEntryPointPath": "",
+    "isEntryPointName": "",
+    "treatFinalFieldsAsMandatory": false
+  },
+  "graphRestriction": {
+    "classPackageExcludeFilter": "",
+    "classPackageIncludeFilter": "",
+    "classNameExcludeFilter": "",
+    "classNameIncludeFilter": "",
+    "methodNameExcludeFilter": "",
+    "methodNameIncludeFilter": "",
+    "removeByInheritance": "", // inheritance/annotation based filtering is done in a second step
+    "removeByAnnotation": "",
+    "removeByClassPackage": "", // cleanup the graph after inheritance/annotation based filtering is done
+    "removeByClassName": "",
+    "cutMappings": false,
+    "cutEnum": true,
+    "cutTests": true,
+    "cutClient": true,
+    "cutDataAccess": true,
+    "cutInterfaceStructures": true,
+    "cutDataStructures": true,
+    "cutGetterAndSetter": true,
+    "cutConstructors": true
+  },
+  "graphTraversal": {
+    "forwardDepth": 3,
+    "backwardDepth": 3,
+    "classPackageExcludeFilter": "",
+    "classPackageIncludeFilter": "",
+    "classNameExcludeFilter": "",
+    "classNameIncludeFilter": "",
+    "methodNameExcludeFilter": "",
+    "methodNameIncludeFilter": "",
+    "hideMappings": false,
+    "hideDataStructures": false,
+    "hidePrivateMethods": true,
+    "hideInterfaceCalls": true, // indirection: implementation -> interface (is hidden) -> implementation
+    "onlyShowApplicationEntryPoints": false, // root node is included
+    "useMethodCallsForStructureDiagram": "ForwardOnly" // ForwardOnly, BothDirections, No
+  },
+  "details": {
+    "aggregation": "GroupByClass", // ByClass, GroupByClass, None
+    "showMethodParametersTypes": false,
+    "showMethodParametersNames": false,
+    "showMethodReturnType": false,
+    "showPackageLevels": 2,
+    "showCallOrder": false,
+    "edgeMode": "MethodsOnly", // TypesOnly, MethodsOnly, TypesAndMethods, MethodsAndDirectTypeUsage
+    "showDetailedClassStructure": false
+  },
+  "rootClass": "org.example.view.MonstrGUI",
+  "extensionCallbackMethod": "" // qualified.class.name#methodName - signature: public static String method(String)
+}
+diagram meta data end '/
+
+
+
+digraph g {
+    rankdir="LR"
+    splines=polyline
+    
+
+'nodes 
+subgraph cluster_1322970774 { 
+   	label=example
+	labeljust=l
+	fillcolor="#ececec"
+	style=filled
+   
+   subgraph cluster_1139465888 { 
+   	label=Mylab3
+	labeljust=l
+	fillcolor=white
+	style=filled
+   
+   Mylab31526836320XXXmain1859653459[
+	label="+ main()"
+	style=filled
+	fillcolor=white
+	tooltip="Mylab3
+
+null"
+	fontcolor=darkgreen
+];
+} 
+
+subgraph cluster_134302551 { 
+   	label=view
+	labeljust=l
+	fillcolor="#d8d8d8"
+	style=filled
+   
+   subgraph cluster_496733819 { 
+   	label=MonstrGUI
+	labeljust=l
+	fillcolor=white
+	style=filled
+   
+   MonstrGUI2051374221XXXMonstrGUI0[
+	label="+ MonstrGUI()"
+	style=filled
+	fillcolor=white
+	tooltip="MonstrGUI
+
+null"
+	penwidth=4
+	fontcolor=darkgreen
+];
+} 
+} 
+
+subgraph cluster_1943169645 { 
+   	label=handlers
+	labeljust=l
+	fillcolor="#d8d8d8"
+	style=filled
+   
+   subgraph cluster_1483774614 { 
+   	label=XmlHandler
+	labeljust=l
+	fillcolor=white
+	style=filled
+   
+   XmlHandler236307511XXXexportData979386133[
+	label="+ exportData()"
+	style=filled
+	fillcolor=white
+	tooltip="XmlHandler
+
+null"
+	fontcolor=darkgreen
+];
+
+XmlHandler236307511XXXimportData2189724[
+	label="+ importData()"
+	style=filled
+	fillcolor=white
+	tooltip="XmlHandler
+
+null"
+	fontcolor=darkgreen
+];
+
+XmlHandler236307511XXXsupports2189724[
+	label="+ supports()"
+	style=filled
+	fillcolor=white
+	tooltip="XmlHandler
+
+null"
+	fontcolor=darkgreen
+];
+} 
+
+subgraph cluster_1537082188 { 
+   	label=YamlHandler
+	labeljust=l
+	fillcolor=white
+	style=filled
+   
+   YamlHandler236307511XXXexportData979386133[
+	label="+ exportData()"
+	style=filled
+	fillcolor=white
+	tooltip="YamlHandler
+
+null"
+	fontcolor=darkgreen
+];
+
+YamlHandler236307511XXXimportData2189724[
+	label="+ importData()"
+	style=filled
+	fillcolor=white
+	tooltip="YamlHandler
+
+null"
+	fontcolor=darkgreen
+];
+
+YamlHandler236307511XXXsupports2189724[
+	label="+ supports()"
+	style=filled
+	fillcolor=white
+	tooltip="YamlHandler
+
+null"
+	fontcolor=darkgreen
+];
+} 
+
+subgraph cluster_944982549 { 
+   	label=JsonHandler
+	labeljust=l
+	fillcolor=white
+	style=filled
+   
+   JsonHandler236307511XXXexportData979386133[
+	label="+ exportData()"
+	style=filled
+	fillcolor=white
+	tooltip="JsonHandler
+
+null"
+	fontcolor=darkgreen
+];
+
+JsonHandler236307511XXXimportData2189724[
+	label="+ importData()"
+	style=filled
+	fillcolor=white
+	tooltip="JsonHandler
+
+null"
+	fontcolor=darkgreen
+];
+
+JsonHandler236307511XXXsupports2189724[
+	label="+ supports()"
+	style=filled
+	fillcolor=white
+	tooltip="JsonHandler
+
+null"
+	fontcolor=darkgreen
+];
+} 
+} 
+} 
+
+'edges    
+JsonHandler236307511XXXexportData979386133 -> JsonHandler236307511XXXsupports2189724;
+JsonHandler236307511XXXimportData2189724 -> JsonHandler236307511XXXsupports2189724;
+MonstrGUI2051374221XXXMonstrGUI0 -> JsonHandler236307511XXXexportData979386133;
+MonstrGUI2051374221XXXMonstrGUI0 -> JsonHandler236307511XXXimportData2189724;
+MonstrGUI2051374221XXXMonstrGUI0 -> XmlHandler236307511XXXexportData979386133;
+MonstrGUI2051374221XXXMonstrGUI0 -> XmlHandler236307511XXXimportData2189724;
+MonstrGUI2051374221XXXMonstrGUI0 -> YamlHandler236307511XXXexportData979386133;
+MonstrGUI2051374221XXXMonstrGUI0 -> YamlHandler236307511XXXimportData2189724;
+Mylab31526836320XXXmain1859653459 -> MonstrGUI2051374221XXXMonstrGUI0;
+XmlHandler236307511XXXexportData979386133 -> XmlHandler236307511XXXsupports2189724;
+XmlHandler236307511XXXimportData2189724 -> XmlHandler236307511XXXsupports2189724;
+YamlHandler236307511XXXexportData979386133 -> YamlHandler236307511XXXsupports2189724;
+YamlHandler236307511XXXimportData2189724 -> YamlHandler236307511XXXsupports2189724;
+    
+}
+@enduml

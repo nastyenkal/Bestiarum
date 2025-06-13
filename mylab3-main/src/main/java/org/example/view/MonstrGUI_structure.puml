@@ -1,0 +1,233 @@
+@startuml
+
+/' diagram meta data start
+config=StructureConfiguration;
+{
+  "projectClassification": {
+    "searchMode": "OpenProject", // OpenProject, AllProjects
+    "includedProjects": "",
+    "pathEndKeywords": "*.impl",
+    "isClientPath": "",
+    "isClientName": "",
+    "isTestPath": "",
+    "isTestName": "",
+    "isMappingPath": "",
+    "isMappingName": "",
+    "isDataAccessPath": "",
+    "isDataAccessName": "",
+    "isDataStructurePath": "",
+    "isDataStructureName": "",
+    "isInterfaceStructuresPath": "",
+    "isInterfaceStructuresName": "",
+    "isEntryPointPath": "",
+    "isEntryPointName": "",
+    "treatFinalFieldsAsMandatory": false
+  },
+  "graphRestriction": {
+    "classPackageExcludeFilter": "",
+    "classPackageIncludeFilter": "",
+    "classNameExcludeFilter": "",
+    "classNameIncludeFilter": "",
+    "methodNameExcludeFilter": "",
+    "methodNameIncludeFilter": "",
+    "removeByInheritance": "", // inheritance/annotation based filtering is done in a second step
+    "removeByAnnotation": "",
+    "removeByClassPackage": "", // cleanup the graph after inheritance/annotation based filtering is done
+    "removeByClassName": "",
+    "cutMappings": false,
+    "cutEnum": true,
+    "cutTests": true,
+    "cutClient": true,
+    "cutDataAccess": true,
+    "cutInterfaceStructures": true,
+    "cutDataStructures": true,
+    "cutGetterAndSetter": true,
+    "cutConstructors": true
+  },
+  "graphTraversal": {
+    "forwardDepth": 3,
+    "backwardDepth": 3,
+    "classPackageExcludeFilter": "",
+    "classPackageIncludeFilter": "",
+    "classNameExcludeFilter": "",
+    "classNameIncludeFilter": "",
+    "methodNameExcludeFilter": "",
+    "methodNameIncludeFilter": "",
+    "hideMappings": false,
+    "hideDataStructures": false,
+    "hidePrivateMethods": true,
+    "hideInterfaceCalls": true, // indirection: implementation -> interface (is hidden) -> implementation
+    "onlyShowApplicationEntryPoints": false, // root node is included
+    "useMethodCallsForStructureDiagram": "ForwardOnly" // ForwardOnly, BothDirections, No
+  },
+  "details": {
+    "aggregation": "GroupByClass", // ByClass, GroupByClass, None
+    "showClassGenericTypes": true,
+    "showMethods": true,
+    "showMethodParameterNames": true,
+    "showMethodParameterTypes": true,
+    "showMethodReturnType": true,
+    "showPackageLevels": 3,
+    "showDetailedClassStructure": true
+  },
+  "rootClass": "org.example.view.MonstrGUI",
+  "extensionCallbackMethod": "" // qualified.class.name#methodName - signature: public static String method(String)
+}
+diagram meta data end '/
+
+
+
+digraph g {
+    rankdir="TB"
+    splines=polyline
+    
+
+'nodes 
+subgraph cluster_1322970774 { 
+   	label=example
+	labeljust=l
+	fillcolor="#ececec"
+	style=filled
+   
+   subgraph cluster_123453861 { 
+   	label=model
+	labeljust=l
+	fillcolor="#d8d8d8"
+	style=filled
+   
+   Monstr823774235[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)Monstr</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >-   additional_info: String [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   description: String [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   first_mention: String [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   full_info: String [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   habitat: String [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   immunities: String [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   name: String [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   physical_characteristics: String [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   potion: Potion [0..1]</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+
+Potion823774235[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)Potion</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >-   ingredients: String [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   preparation_time: String [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   strength: String [0..1]</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+} 
+
+subgraph cluster_134302551 { 
+   	label=view
+	labeljust=l
+	fillcolor="#d8d8d8"
+	style=filled
+   
+   MonstrGUI2051374221[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)MonstrGUI</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >-   fileHandlerChain: FileImportExportHandler [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   jsonNode: DefaultMutableTreeNode [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   monsters: List&lt;Monstr&gt; [0..*]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   rootNode: DefaultMutableTreeNode [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   tree: JTree [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   xmlNode: DefaultMutableTreeNode [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   yamlNode: DefaultMutableTreeNode [0..1]</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >- exportData()</TD></TR>
+<TR><TD ALIGN="LEFT" >- importData()</TD></TR>
+<TR><TD ALIGN="LEFT" >- initMonstGUI()</TD></TR>
+<TR><TD ALIGN="LEFT" >- showDetailsNew()</TD></TR>
+<TR><TD ALIGN="LEFT" >- updateTree()</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+} 
+
+subgraph cluster_1943169645 { 
+   	label=handlers
+	labeljust=l
+	fillcolor="#d8d8d8"
+	style=filled
+   
+   JsonHandler236307511[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)JsonHandler</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >-   nextHandler: FileImportExportHandler [0..1]</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+ exportData(monsters: List&lt;Monstr&gt;, file: File)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ importData(file: File): List&lt;Monstr&gt;</TD></TR>
+<TR><TD ALIGN="LEFT" >+ supports(file: File): boolean</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+
+XmlHandler236307511[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)XmlHandler</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >-   nextHandler: FileImportExportHandler [0..1]</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+ exportData(monsters: List&lt;Monstr&gt;, file: File)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ importData(file: File): List&lt;Monstr&gt;</TD></TR>
+<TR><TD ALIGN="LEFT" >- populateMonsterField(monster: Monstr, tag: String, value: String)</TD></TR>
+<TR><TD ALIGN="LEFT" >- populatePotionField(potion: Potion, tag: String, value: String)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ supports(file: File): boolean</TD></TR>
+<TR><TD ALIGN="LEFT" >- writeElement(writer: XMLStreamWriter, name: String, value: String)</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+
+YamlHandler236307511[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)YamlHandler</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >-   nextHandler: FileImportExportHandler [0..1]</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+ exportData(monsters: List&lt;Monstr&gt;, file: File)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ importData(file: File): List&lt;Monstr&gt;</TD></TR>
+<TR><TD ALIGN="LEFT" >+ supports(file: File): boolean</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+} 
+} 
+
+'edges    
+Monstr823774235 -> Potion823774235[label="potion
+[0..1]"];
+MonstrGUI2051374221 -> JsonHandler236307511[arrowhead=none];
+MonstrGUI2051374221 -> Monstr823774235[label="monsters
+[0..*]"];
+MonstrGUI2051374221 -> XmlHandler236307511[arrowhead=none];
+MonstrGUI2051374221 -> YamlHandler236307511[arrowhead=none];
+    
+}
+@enduml
