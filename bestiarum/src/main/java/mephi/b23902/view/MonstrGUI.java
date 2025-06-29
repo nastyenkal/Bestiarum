@@ -1,13 +1,13 @@
-package org.example.view;
+package mephi.b23902.view;
 
 // MonstrGUI.java
 
 
-import org.example.handlers.FileImportExportHandler;
-import org.example.handlers.JsonHandler;
-import org.example.handlers.XmlHandler;
-import org.example.handlers.YamlHandler;
-import org.example.model.Monstr;
+import mephi.b23902.handlers.FileImportExportHandler;
+import mephi.b23902.handlers.JsonHandler;
+import mephi.b23902.handlers.XmlHandler;
+import mephi.b23902.handlers.YamlHandler;
+import mephi.b23902.model.Monstr;
 
 import javax.swing.*;
 import javax.swing.tree.DefaultMutableTreeNode;

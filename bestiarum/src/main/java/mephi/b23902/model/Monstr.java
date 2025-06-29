@@ -1,4 +1,4 @@
-package org.example.model;
+package mephi.b23902.model;
 
 public class Monstr {
     private String name;

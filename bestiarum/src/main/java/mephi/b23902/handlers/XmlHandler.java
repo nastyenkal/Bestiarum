@@ -1,7 +1,7 @@
-package org.example.handlers;
+package mephi.b23902.handlers;
 
-import org.example.model.Monstr;
-import org.example.model.Potion;
+import mephi.b23902.model.Monstr;
+import mephi.b23902.model.Potion;
 
 import javax.xml.stream.*;
 import java.io.File;

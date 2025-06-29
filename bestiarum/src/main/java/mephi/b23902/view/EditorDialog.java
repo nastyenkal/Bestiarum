@@ -1,7 +1,7 @@
-package org.example.view;
+package mephi.b23902.view;
 
-import org.example.model.Monstr;
-import org.example.model.Potion;
+import mephi.b23902.model.Monstr;
+import mephi.b23902.model.Potion;
 
 import javax.swing.*;
 import java.awt.*;

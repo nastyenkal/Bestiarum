@@ -1,9 +1,9 @@
-package org.example.handlers;
+package mephi.b23902.handlers;
 
 // YamlHandler.java
 
-import org.example.model.Monstr;
-import org.example.model.Bestiary;
+import mephi.b23902.model.Monstr;
+import mephi.b23902.model.Bestiary;
 
 import org.yaml.snakeyaml.DumperOptions;
 import org.yaml.snakeyaml.LoaderOptions;

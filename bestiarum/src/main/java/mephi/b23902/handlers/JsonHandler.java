@@ -1,8 +1,8 @@
-package org.example.handlers;
+package mephi.b23902.handlers;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import org.example.model.Bestiary;
-import org.example.model.Monstr;
+import mephi.b23902.model.Bestiary;
+import mephi.b23902.model.Monstr;
 import java.io.File;
 import java.util.List;
 

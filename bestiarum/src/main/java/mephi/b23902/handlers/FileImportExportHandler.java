@@ -1,6 +1,6 @@
-package org.example.handlers;
+package mephi.b23902.handlers;
 
-import org.example.model.Monstr;
+import mephi.b23902.model.Monstr;
 
 import java.io.File;
 import java.util.List;

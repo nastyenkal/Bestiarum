@@ -1,6 +1,6 @@
-package org.example;
+package mephi.b23902;
 
-import org.example.view.MonstrGUI;
+import mephi.b23902.view.MonstrGUI;
 
 public class Bestiarum {
     public static void main(String[] args) {
