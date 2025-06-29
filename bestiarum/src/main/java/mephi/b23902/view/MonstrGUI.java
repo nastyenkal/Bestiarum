@@ -1,8 +1,5 @@
 package mephi.b23902.view;
 
-// MonstrGUI.java
-
-
 import mephi.b23902.handlers.FileImportExportHandler;
 import mephi.b23902.handlers.JsonHandler;
 import mephi.b23902.handlers.XmlHandler;
@@ -18,9 +15,7 @@ import java.io.File;
 import java.util.List;
 
 public class MonstrGUI extends JFrame {
-
     private FileImportExportHandler fileHandlerChain;
-
     private List<Monstr> monsters;
     private DefaultMutableTreeNode rootNode;
     private DefaultMutableTreeNode yamlNode;
@@ -33,8 +28,6 @@ public class MonstrGUI extends JFrame {
         initMonstGUI();
     }
 
-    // Контроллер
-    // Настройка цепочки обработчиков
     private void setupHandlers() {
         YamlHandler yamlHandler = new YamlHandler();
         XmlHandler xmlHandler = new XmlHandler();
@@ -45,7 +38,6 @@ public class MonstrGUI extends JFrame {
         fileHandlerChain = yamlHandler;
     }
 
-    // Инициализация главного экрана
     private void initMonstGUI() {
         setTitle("Bestiarum");
         setSize(800, 600);
@@ -69,99 +61,107 @@ public class MonstrGUI extends JFrame {
         menuBar.add(fileMenu);
         setJMenuBar(menuBar);
 
-        // Дерево
+        // Дерево с группировкой по форматам
         rootNode = new DefaultMutableTreeNode("Чудовища");
         yamlNode = new DefaultMutableTreeNode("YAML");
         xmlNode = new DefaultMutableTreeNode("XML");
         jsonNode = new DefaultMutableTreeNode("JSON");
+        
         rootNode.add(yamlNode);
         rootNode.add(xmlNode);
         rootNode.add(jsonNode);
 
         tree = new JTree(rootNode);
         tree.getSelectionModel().setSelectionMode(TreeSelectionModel.SINGLE_TREE_SELECTION);
-
-        //tree.addTreeSelectionListener(e -> showDetails());
-        tree.addTreeSelectionListener(e -> showDetailsNew());
-
+        tree.addTreeSelectionListener(e -> showMonstrDetails());
 
         add(new JScrollPane(tree), BorderLayout.CENTER);
-        setVisible(true);
     }
 
-    // Контроллер
-    // Функция меню для импорта чудовищь
+    private void showMonstrDetails() {
+        DefaultMutableTreeNode node = (DefaultMutableTreeNode) tree.getLastSelectedPathComponent();
+        if (node == null || node == rootNode || 
+            node == yamlNode || node == xmlNode || node == jsonNode) {
+            return;
+        }
+
+        Object userObject = node.getUserObject();
+        if (userObject instanceof Monstr) {
+            new EditorDialog(this, (Monstr) userObject).setVisible(true);
+        } else {
+            JOptionPane.showMessageDialog(this, 
+                "Ошибка: выбран неверный элемент", 
+                "Ошибка", 
+                JOptionPane.ERROR_MESSAGE);
+        }
+    }
+
     private void importData() {
-        JFileChooser fileChooser = new JFileChooser( new File("./data/") );
+        JFileChooser fileChooser = new JFileChooser(new File("./data/"));
         if (fileChooser.showOpenDialog(this) == JFileChooser.APPROVE_OPTION) {
             try {
                 File file = fileChooser.getSelectedFile();
                 monsters = fileHandlerChain.importData(file);
 
-                System.out.println("Monstr imported: " + monsters);
+                if (monsters.isEmpty()) {
+                    throw new Exception("Файл не содержит данных");
+                }
 
-                DefaultMutableTreeNode targetNode =
-                        switch (file.getName().split("\\.")[1].toLowerCase()) {
-                            case "yaml" -> yamlNode;
-                            case "xml" -> xmlNode;
-                            case "json" -> jsonNode;
-                            default -> rootNode;
-                        };
-                yamlNode.removeAllChildren();
-                xmlNode.removeAllChildren();
-                jsonNode.removeAllChildren();
+                // Определяем тип файла и очищаем соответствующую ветку
+                String extension = file.getName().split("\\.")[1].toLowerCase();
+                DefaultMutableTreeNode targetNode = switch (extension) {
+                    case "yaml", "yml" -> yamlNode;
+                    case "xml" -> xmlNode;
+                    case "json" -> jsonNode;
+                    default -> throw new Exception("Неизвестный формат файла");
+                };
 
-                monsters.forEach(m -> targetNode.add(new DefaultMutableTreeNode(m)));
+                targetNode.removeAllChildren();
+                for (Monstr monstr : monsters) {
+                    targetNode.add(new DefaultMutableTreeNode(monstr));
+                }
 
                 updateTree();
+                JOptionPane.showMessageDialog(this, 
+                    "Успешно загружено " + monsters.size() + " чудовищ в раздел " + extension.toUpperCase());
             } catch (Exception ex) {
-                JOptionPane.showMessageDialog(this, "Error: " + ex.getMessage());
-                System.out.println(ex.getMessage());
+                JOptionPane.showMessageDialog(this, 
+                    "Ошибка загрузки: " + ex.getMessage(), 
+                    "Ошибка", 
+                    JOptionPane.ERROR_MESSAGE);
             }
         }
     }
 
-    // Контроллер
-    // Функция меню для экспорта чудовищь
     private void exportData() {
-        JFileChooser fileChooser = new JFileChooser( new File("./data/") );
+        if (monsters == null || monsters.isEmpty()) {
+            JOptionPane.showMessageDialog(this, 
+                "Нет данных для экспорта", 
+                "Ошибка", 
+                JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+
+        JFileChooser fileChooser = new JFileChooser(new File("./data/"));
         if (fileChooser.showSaveDialog(this) == JFileChooser.APPROVE_OPTION) {
             try {
                 File file = fileChooser.getSelectedFile();
                 fileHandlerChain.exportData(monsters, file);
-                JOptionPane.showMessageDialog(this, "Exported successfully!");
+                JOptionPane.showMessageDialog(this, "Данные успешно экспортированы");
             } catch (Exception ex) {
-                JOptionPane.showMessageDialog(this, "Error: " + ex.getMessage());
-                System.out.println(ex.getMessage());
+                JOptionPane.showMessageDialog(this, 
+                    "Ошибка экспорта: " + ex.getMessage(), 
+                    "Ошибка", 
+                    JOptionPane.ERROR_MESSAGE);
             }
         }
     }
 
-//    // Простое отображение деталей о чудовище
-//    private void showDetails() {
-//        DefaultMutableTreeNode node = (DefaultMutableTreeNode) tree.getLastSelectedPathComponent();
-//        if (node == null || node.isRoot()) return;
-//
-//        Monstr selected = (Monstr) node.getUserObject();
-//        JDialog dialog = new JDialog(this, "Details: " + selected.getName(), true);
-//        JTextArea textArea = new JTextArea(selected.toString());
-//        textArea.setEditable(false);
-//        dialog.add(new JScrollPane(textArea));
-//        dialog.setBounds(600,200,600, 600);
-//        dialog.setVisible(true);
-//    }
-
-    private void showDetailsNew() {
-        DefaultMutableTreeNode node = (DefaultMutableTreeNode) tree.getLastSelectedPathComponent();
-        if (node == null || node == rootNode) return;
-
-        Monstr selected = (Monstr) node.getUserObject();
-        new EditorDialog(this, selected).setVisible(true);
-        updateTree();
-    }
-
     private void updateTree() {
         ((DefaultTreeModel) tree.getModel()).reload();
+        // Раскрываем все узлы после обновления
+        for (int i = 0; i < tree.getRowCount(); i++) {
+            tree.expandRow(i);
+        }
     }
-
 }
