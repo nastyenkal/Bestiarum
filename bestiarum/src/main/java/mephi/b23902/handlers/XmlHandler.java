@@ -40,15 +40,25 @@ public class XmlHandler implements FileImportExportHandler {
             switch (event) {
                 case XMLStreamConstants.START_ELEMENT:
                     String tagName = reader.getLocalName();
-                    if ("creature".equals(tagName)) {
+                    if ("monstr".equals(tagName)) {  // Изменили с creature на monstr
                         currentMonster = new Monstr();
-                    }
-                    else if ("potion".equals(tagName)) {
+                    } else if ("potion".equals(tagName)) {
                         currentPotion = new Potion();
                         inPotion = true;
                     }
                     currentElement = tagName;
                     break;
+//                case XMLStreamConstants.START_ELEMENT:
+//                    String tagName = reader.getLocalName();
+//                    if ("creature".equals(tagName)) {
+//                        currentMonster = new Monstr();
+//                    }
+//                    else if ("potion".equals(tagName)) {
+//                        currentPotion = new Potion();
+//                        inPotion = true;
+//                    }
+//                    currentElement = tagName;
+//                    break;
 
                 case XMLStreamConstants.CHARACTERS:
                     String text = reader.getText().trim();
